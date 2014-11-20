@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BombClass : MonoBehaviour {
 	private float ySpeed = -4f;
+	public GameObject explosionPrefab;
+	public PlayerClass player;
 	
 	// Update is called once per frame
 	void Update () {
@@ -17,8 +19,18 @@ public class BombClass : MonoBehaviour {
 			//reset shark
 			obj.gameObject.transform.rotation = Quaternion.identity;
 			obj.gameObject.transform.position = new Vector3(20f, -3f, 8f);
-			Destroy(this.gameObject);
+			player.updateScoreBy(+1);
+			Destroy(gameObject);
+			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 		}
+		if (obj.gameObject.name == "ClownFish") {
+			//reset fish
+			obj.gameObject.transform.rotation = Quaternion.identity;
+			obj.gameObject.transform.position = new Vector3(-20f, -1f, 8f);
+			player.updateScoreBy(-1);
+			Destroy(gameObject);
+			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+		}	
 	}
 }
 

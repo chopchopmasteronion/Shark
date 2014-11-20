@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerClass : MonoBehaviour {
 	public float speed;
 	public GameObject bombPrefab;
+	public static int score = 0;
 	// Use this for initialization
 	void Start () {
 	
@@ -21,6 +22,18 @@ public class PlayerClass : MonoBehaviour {
 		if (Input.anyKeyDown) {
 			GameObject bombObject = (GameObject)Instantiate(bombPrefab);
 			bombObject.transform.position = this.gameObject.transform.position;
+			BombClass bomb = (BombClass)bombObject.GetComponent("BombClass");
+			bomb.player = this;
 		}
+	}
+
+	public void updateScoreBy(int deltaScore) {
+		PlayerClass.score += deltaScore;
+	}
+
+	void OnGUI() {
+		GUIStyle style = new GUIStyle();
+		style.fontSize = 20;
+		GUI.Label(new Rect(10,10,100,20), "Score:"+PlayerClass.score, style );	
 	}
 }
