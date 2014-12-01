@@ -5,10 +5,6 @@ public class PlayerClass : MonoBehaviour {
 	public float speed;
 	public GameObject bombPrefab;
 	public static int score = 0;
-	public GameObject mainCamera;
-	public GameObject gameBackground;
-	public float nextZ = 0;
-
 	// Use this for initialization
 	void Start () {
 	
@@ -29,28 +25,10 @@ public class PlayerClass : MonoBehaviour {
 			BombClass bomb = (BombClass)bombObject.GetComponent("BombClass");
 			bomb.player = this;
 		}
-		if (nextZ > mainCamera.transform.position.z) {
-			mainCamera.gameObject.transform.Translate( 
-			                                          3* Mathf.Sin(transform.position.z/2 ) * Time.deltaTime, 
-			                                          0, 
-			                                          -Mathf.Sin(transform.position.z /2 ) * Time.deltaTime *0.3f
-			                                          );
-			mainCamera.gameObject.transform.RotateAroundLocal( Vector3.up, Time.deltaTime*0.1f );
-			gameBackground.gameObject.transform.RotateAroundLocal( Vector3.up, Time.deltaTime*0.1f );
-		}
 	}
 
-	//replace the updateScoreBy method with this code
 	public void updateScoreBy(int deltaScore) {
-		PlayerClass.score += deltaScore;	
-		if (PlayerClass.score>3) {
-			Application.LoadLevel("WinScene");
-		} else if (PlayerClass.score<0) {
-			Application.LoadLevel("LoseScene");
-		}
-		if (PlayerClass.score>0) {
-			nextZ = PlayerClass.score*2.5f;
-		}
+		PlayerClass.score += deltaScore;
 	}
 
 	void OnGUI() {

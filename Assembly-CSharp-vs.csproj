@@ -49,7 +49,6 @@
      <Compile Include="Assets\Class\BombClass.cs" />
      <Compile Include="Assets\Class\ExplosionClass.cs" />
      <Compile Include="Assets\Class\FishClass.cs" />
-     <Compile Include="Assets\Class\GameOverClass.cs" />
      <Compile Include="Assets\Class\PlayerClass.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
